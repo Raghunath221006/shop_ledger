@@ -1,0 +1,65 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body {
+  background-color: #F7F3EC;
+  color: #1C1A17;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  /* faint ledger-paper ruling */
+  background-image:
+    linear-gradient(transparent calc(100% - 1px), rgba(168, 50, 42, 0.045) 0),
+    radial-gradient(rgba(176, 125, 43, 0.05) 1px, transparent 0);
+  background-size: 100% 2.25rem, 18px 18px;
+}
+
+/* tabular figures everywhere numbers live */
+.tnum {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: "tnum";
+}
+
+@layer components {
+  .card {
+    @apply bg-surface border border-line rounded-2xl shadow-card;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none;
+  }
+  .btn-primary {
+    @apply btn bg-brand text-white hover:bg-brand-dark;
+  }
+  .btn-ghost {
+    @apply btn bg-transparent text-ink hover:bg-paper border border-line;
+  }
+  .btn-get {
+    @apply btn bg-get text-white hover:brightness-95;
+  }
+  .btn-give {
+    @apply btn bg-give text-white hover:brightness-95;
+  }
+  .field {
+    @apply w-full rounded-xl border border-line bg-paper/60 px-3.5 py-2.5 text-sm outline-none transition focus:border-brand focus:bg-white focus:ring-2 focus:ring-brand/15;
+  }
+  .label {
+    @apply block text-xs font-semibold uppercase tracking-wide text-muted mb-1.5;
+  }
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold;
+  }
+}
+
+/* Print: only the invoice sheet */
+@media print {
+  body { background: #fff; }
+  .no-print { display: none !important; }
+  .print-area { box-shadow: none !important; border: none !important; }
+}
